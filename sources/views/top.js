@@ -10,7 +10,7 @@ export default class TopView extends JetView{
 	//building toolbars
 	toolbar(label,n){
 		return [
-			{ view:"label", label:label, minWidth:140 },
+			{ view:"label", label:label },
 			{
 				view:"label", width:30,
 				template:"<span class='webix_icon fa-question-circle'></span>",
@@ -19,8 +19,7 @@ export default class TopView extends JetView{
 		];
 	}
 	config(){
-
-		var dashboard = {
+		return {
 			view:"dashboard",
 			css:"teacher_dashboard",
 			gridColumns:4,
@@ -61,8 +60,6 @@ export default class TopView extends JetView{
 				}
 			]
 		};
-
-		return dashboard;
 	}
 	init(view){
 		//add tooltips

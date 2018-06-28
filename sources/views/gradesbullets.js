@@ -42,10 +42,8 @@ export default class GradesBulletsView extends JetView {
 		};
 	}
 	init(){
-		this.on(this.app,"student:select",(id)=>{
-			//load new data for radar
-			this.loadGrades(id);
-		});
+		//load new data for radar
+		this.on(this.app,"student:select", id => this.loadGrades(id) );
 	}
 	loadGrades(id){
 		//making a JSON object out of the array

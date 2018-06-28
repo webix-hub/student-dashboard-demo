@@ -1,4 +1,4 @@
-const average = new webix.DataCollection({
+const statistics = new webix.DataCollection({
 	data:[
 		{"id":1,"avgperf":"53","change":"50","month":"Oct."},
 		{"id":2,"avgperf":"68","change":"60","month":"Nov."},
@@ -12,4 +12,4 @@ const average = new webix.DataCollection({
 	]
 });
 
-export default average;
+export default statistics;
