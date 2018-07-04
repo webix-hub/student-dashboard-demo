@@ -9,7 +9,7 @@ export default class GradesBulletsView extends JetView {
 			type:"clean",
 			cols:[
 				{
-					template:"<div class='right'>"+subj.name+"</div>",
+					template:`<div class='right'>${subj.name}</div>`,
 					width:80
 				},
 				{
@@ -43,7 +43,7 @@ export default class GradesBulletsView extends JetView {
 	}
 	init(){
 		//load new data for radar
-		this.on(this.app,"student:select", id => this.loadGrades(id) );
+		this.on(this.app,"student:select", id => this.loadGrades(id));
 	}
 	loadGrades(id){
 		//making a JSON object out of the array

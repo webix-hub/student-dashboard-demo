@@ -10,13 +10,12 @@ export default class ProgressView extends JetView{
 			rowHeight:50,
 			css:"my_style",
 			type:{
-				itemNew:function(data){
-					if (data.new) return "<span class='new'>New</span>";
-					else return "";
+				itemNew: data => {
+					return data.new ? "<span class='new'>New</span>" : "";
 				}
 			},
 			on:{
-				onItemClick: (id) => {
+				onItemClick: id => {
 					//select the same student in list
 					this.app.callEvent("student:select",[id.row]);
 				}
@@ -30,17 +29,17 @@ export default class ProgressView extends JetView{
 				{
 					id:"",
 					fillspace:1, minWidth:170,
+					css:"curriculum",
 					header:{
 						text:"Curriculum<br>students", css:"multiline", height:55,
-					}, 
-					template:function(obj){
-						let html = "<svg viewBox='0 0 140 50'><rect y='20' rx='5' ry='5' width='140' height='11' style='fill:#ccc;' />"
+					},
+					template: obj => (
+						"<svg viewBox='0 0 140 50'><rect y='20' rx='5' ry='5' width='140' height='11' style='fill:#ccc;' />"
 						+"<rect y='20' rx='5' ry='5' width='"+obj.compl*1.4+"' height='11' style='fill:#aaa;' />"
 						+"<rect y='20' rx='5' ry='5' width='"+obj.achiev*1.4+"' height='11' style='fill:#37bc98;' />"
 						+"Sorry, your browser does not support inline SVG."
-						+"</svg>";
-						return html;
-					}
+						+"</svg>"
+					)
 				},
 				{
 					id:"",
@@ -49,7 +48,7 @@ export default class ProgressView extends JetView{
 						text:"Achievement<br>(%)",
 						css:"multiline"
 					},
-					template:"#achiev# <span class='arrows arrow_up'>&#9652;#achcng#</span>",
+					template: obj => `${obj.achiev} <span class='arrows arrow_up'>&#9652;${obj.achcng}</span>`
 				},
 				{
 					id:"",
@@ -58,7 +57,7 @@ export default class ProgressView extends JetView{
 						text:"Completed<br>(%)",
 						css:"multiline"
 					},
-					template:"#compl# <span class='arrows arrow_up'>&#9652;#cmpch#</span>"
+					template: obj => `${obj.compl} <span class='arrows arrow_up'>&#9652;${obj.cmpch}</span>`
 				},
 				{
 					id:"",
@@ -67,10 +66,10 @@ export default class ProgressView extends JetView{
 						text:"Problems solved<br>this week",
 						css:"multiline"
 					},
-					template:(data)=>{
-						return data.prbwk + " "
-							+ ( data.prch >= 0 ? "<span class='arrows arrow_up'>&#9652;" : "<span class='arrows arrow_down'>&#9662;" )
-							+ data.prch + "</span>"; 
+					template: obj => {
+						return obj.prbwk + " "
+							+ ( obj.prch >= 0 ? "<span class='arrows arrow_up'>&#9652;" : "<span class='arrows arrow_down'>&#9662;" )
+							+ obj.prch + "</span>"; 
 					}
 				},
 				{
@@ -86,10 +85,10 @@ export default class ProgressView extends JetView{
 				{
 					id:"", header:"Assignments",
 					fillspace:1, minWidth:120,
-					template:function(data){
-						return ( data.ascmp ? "<span class='assignment_complete'>&#10004;</span>" + data.ascmp : "" )
+					template: obj => {
+						return ( obj.ascmp ? "<span class='assignment_complete'>&#10004;</span>" + obj.ascmp : "" )
 							+ " "
-							+ (data.asinc ? "<span class='assignment_incomplete'>&#10000;</span>" + data.asinc : "");
+							+ (obj.asinc ? "<span class='assignment_incomplete'>&#10000;</span>" + obj.asinc : "");
 					}
 				}
 			]
@@ -98,7 +97,7 @@ export default class ProgressView extends JetView{
 	init(view){
 		view.parse(students);
 
-		this.on(this.app,"student:select",(id)=>{
+		this.on(this.app,"student:select", id => {
 			//select the same student as in list
 			view.select(id);
 			view.showItem(id);
