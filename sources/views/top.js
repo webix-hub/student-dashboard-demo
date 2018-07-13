@@ -21,19 +21,20 @@ export default class TopView extends JetView{
 	config(){
 		return {
 			view:"dashboard",
+			autoFill:true,
 			css:"teacher_dashboard",
 			gridColumns:4,
 			gridRows:3,
 			cells:[
 				{
-					view:"panel", x:0, y:0, dx:1, dy:2,
+					view:"panel", resize:true, x:0, y:0, dx:1, dy:2,
 					header:{
 						view:"toolbar", elements:this.toolbar("Grade by student")
 					},
 					body:StudentsView
 				},
 				{
-					view:"panel", x:1, y:0, dx:3, dy:1,
+					view:"panel", resize:true, x:1, y:0, dx:3, dy:1,
 					header:{
 						view:"toolbar", elements:this.toolbar("Grade students by subjects")
 					},
@@ -45,14 +46,14 @@ export default class TopView extends JetView{
 					}
 				},
 				{
-					view:"panel", x:1, y:1, dx:3, dy:1,
+					view:"panel", resize:true, x:1, y:1, dx:3, dy:1,
 					header:{
 						view:"toolbar", elements:this.toolbar("Individual average grade")
 					},
 					body:StatisticsView
 				},
 				{
-					view:"panel", x:0, y:2, dx:4, dy:1,
+					view:"panel", resize:true, x:0, y:2, dx:4, dy:1,
 					header:{
 						view:"toolbar", elements:this.toolbar("Students progress")
 					},
