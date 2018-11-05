@@ -12,8 +12,8 @@ export default class TopView extends JetView{
 		return [
 			{ view:"label", label:label },
 			{
-				view:"label", width:30,
-				template:"<span class='webix_icon fa-question-circle'></span>",
+				view:"label", width:40,
+				template:"<span class='webix_icon fas fa-question-circle'></span>",
 				css:"question"
 			}
 		];
