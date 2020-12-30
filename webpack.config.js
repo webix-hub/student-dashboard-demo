@@ -34,7 +34,7 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.(less|css)$/,
-					use: [MiniCssExtractPlugin.loader, "css-loader"],
+					use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
 				}
 			]
 		},
