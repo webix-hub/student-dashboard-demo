@@ -11,7 +11,7 @@
     color:#222;
 }
 .students_list .webix_list_item.webix_selected,
-.my_style div.webix_cell.webix_row_select{
+.progress_table div.webix_cell.webix_row_select{
     background-color:#C7EBFF;
 }
 .new{
@@ -46,15 +46,15 @@
 .webix_bullet_scale{
     font-size:8px;
 }
-.my_style div.webix_cell, .my_style .webix_hcell{
+.progress_table div.webix_cell, .progress_table .webix_hcell{
     padding-left:15px;
     padding-right:15px;
     color:#222;
 }
-.my_style .webix_hcell, .my_style .webix_ss_vscroll_header{
+.progress_table .webix_hcell, .progress_table .webix_ss_vscroll_header{
     background:#eee;
 }
-.my_style .webix_ss_header td, .my_style .webix_ss_vscroll_header {
+.progress_table .webix_ss_header td, .progress_table .webix_ss_vscroll_header {
     border: 1px solid #ddd;
 }
 .assignment_complete, .arrow_up{
@@ -78,4 +78,5 @@
 }
 .question .webix_icon {
     cursor:pointer;
+    margin: 25%;
 }

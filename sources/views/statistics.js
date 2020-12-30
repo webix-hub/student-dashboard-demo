@@ -4,11 +4,13 @@ import {getStats} from "models/students";
 
 export default class StatisticsView extends JetView{
 	config(){
-		return {
+		const chart = {
 			view:"chart",
+			localId:"chart",
 			type:"bar",
 			barWidth:12,
 			radius:2,
+			borderless: true,
 			xAxis:{
 				template:"#month#",
 				title:"Month"
@@ -63,8 +65,15 @@ export default class StatisticsView extends JetView{
 				}
 			]
 		};
+
+		return {
+			padding: 10,
+			type:"form",
+			rows:[chart]
+		};
 	}
-	init(chart){
+	init(){
+		const chart = this.$$("chart");
 		chart.parse(statistics);
 
 		this.on(this.app,"student:select", id => {
@@ -77,7 +86,7 @@ export default class StatisticsView extends JetView{
 		});
 	}
 	newLegend(name){
-		let chart = this.getRoot();
+		let chart = this.$$("chart");
 		chart.define("legend", {
 			values:[
 				{text:"Avg. performance", color:"#ac92ec"},

@@ -8,7 +8,7 @@ export default class ProgressView extends JetView{
 			select:true,
 			rowLineHeight:45,
 			rowHeight:50,
-			css:"my_style",
+			css:"progress_table",
 			type:{
 				itemNew: data => {
 					return data.new ? "<span class='new'>New</span>" : "";

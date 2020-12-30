@@ -4,17 +4,20 @@ import GradesRadarView from "views/gradesradar";
 import GradesBulletsView from "views/gradesbullets";
 import StatisticsView from "views/statistics";
 import ProgressView from "views/progress";
-import TooltipView from "views/tooltip";
+
+import tooltip from "../helpers/tooltip";
+import label from "../helpers/label";
 
 export default class TopView extends JetView{
 	//building toolbars
-	toolbar(label){
+	toolbar(type){
 		return [
-			{ view:"label", label:label },
+			{ view:"label", label:label[type] },
 			{
 				view:"label", width:40,
 				template:"<span class='webix_icon fas fa-question-circle'></span>",
-				css:"question"
+				css:"question",
+				tooltip:tooltip[type]
 			}
 		];
 	}
@@ -28,14 +31,16 @@ export default class TopView extends JetView{
 				{
 					view:"panel", x:0, y:0, dx:1, dy:2,
 					header:{
-						view:"toolbar", elements:this.toolbar("Grade by student")
+						view:"toolbar", padding:{ left:12 }, 
+						elements:this.toolbar("gpa")
 					},
 					body:StudentsView
 				},
 				{
 					view:"panel", x:1, y:0, dx:3, dy:1,
 					header:{
-						view:"toolbar", elements:this.toolbar("Grade students by subjects")
+						view:"toolbar", padding:{ left:12 }, 
+						elements:this.toolbar("subject")
 					},
 					body:{
 						cols:[
@@ -47,32 +52,20 @@ export default class TopView extends JetView{
 				{
 					view:"panel", x:1, y:1, dx:3, dy:1,
 					header:{
-						view:"toolbar", elements:this.toolbar("Individual average grade")
+						view:"toolbar", padding:{ left:12 }, 
+						elements:this.toolbar("average")
 					},
 					body:StatisticsView
 				},
 				{
 					view:"panel", x:0, y:2, dx:4, dy:1,
 					header:{
-						view:"toolbar", elements:this.toolbar("Students progress")
+						view:"toolbar", padding:{ left:12 }, 
+						elements:this.toolbar("activity")
 					},
 					body:ProgressView
 				}
 			]
 		};
-	}
-	init(view){
-		//add tooltips
-		this.tooltip = this.ui(TooltipView);
-
-		let questions = view.$view.querySelectorAll(".question");
-		for (let i = 0; i < questions.length; i++){
-			webix.event(questions[i],"mouseover",(e)=>{
-				this.tooltip.showTooltip(i, webix.html.pos(e));
-			});
-			webix.event(questions[i],"mouseout",()=>{
-				this.tooltip.hideTooltip();
-			});
-		}
 	}
 }
