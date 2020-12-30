@@ -4,7 +4,7 @@ var webpack = require("webpack");
 module.exports = function(env) {
 
 	var pack = require("./package.json");
-	var ExtractTextPlugin = require("extract-text-webpack-plugin");
+	var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 	var production = !!(env && env.production === "true");
 	var asmodule = !!(env && env.module === "true");
@@ -26,15 +26,15 @@ module.exports = function(env) {
 			rules: [
 				{
 					test: /\.js$/,
-					loader: "babel-loader?" + JSON.stringify(babelSettings)
+					use: "babel-loader?" + JSON.stringify(babelSettings)
 				},
 				{
 					test: /\.(svg|png|jpg|gif)$/,
-					loader: "url-loader?limit=25000"
+					use: "url-loader?limit=25000"
 				},
 				{
 					test: /\.(less|css)$/,
-					loader: ExtractTextPlugin.extract("css-loader!less-loader")
+					use: [MiniCssExtractPlugin.loader, "css-loader"],
 				}
 			]
 		},
@@ -47,7 +47,7 @@ module.exports = function(env) {
 			}
 		},
 		plugins: [
-			new ExtractTextPlugin("./myapp.css"),
+			new MiniCssExtractPlugin({ filename: "./myapp.css" }),
 			new webpack.DefinePlugin({
 				VERSION: `"${pack.version}"`,
 				APPNAME: `"${pack.name}"`,
