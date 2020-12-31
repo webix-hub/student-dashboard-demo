@@ -3,12 +3,15 @@ import {students} from "models/students";
 
 export default class ProgressView extends JetView{
 	config(){
+		const theme = this.app.getService("theme").getTheme();
+		const dark = theme === "contrast";
+
 		return {
 			view:"datatable",
 			select:true,
 			rowLineHeight:45,
 			rowHeight:50,
-			css:"progress_table",
+			css:"progress_table" + (dark ? " table_dark" : ""),
 			type:{
 				itemNew: data => {
 					return data.new ? "<span class='new'>New</span>" : "";

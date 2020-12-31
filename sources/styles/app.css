@@ -67,3 +67,8 @@
 .panel_drag_handle.webix_el_icon .webix_el_box .webix_icon_button{
     cursor: grabbing;
 }
+
+.table_dark.progress_table .webix_cell.webix_row_select,
+.list_dark.students_list .webix_list_item.webix_selected{
+    background: #24332b;
+}

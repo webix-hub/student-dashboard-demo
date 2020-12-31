@@ -3,9 +3,12 @@ import {students} from "models/students";
 
 export default class StudentsView extends JetView {
 	config(){
+		const theme = this.app.getService("theme").getTheme();
+		const dark = theme === "contrast";
+
 		return {
 			view:"list",
-			css:"students_list",
+			css:"students_list" + (dark ? " list_dark" : ""),
 			select:true,
 			type:{
 				template:"#name# {common.itemNew()} {common.itemProgress()}",
