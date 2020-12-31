@@ -3,16 +3,11 @@
     width:100%;
 }
 .teacher_dashboard.webix_abslayout{
-    background-color:#eee;
+    background-color: #EBEDF0;
 }
 .students_list .webix_list_item,
 .students_list .webix_list_item.webix_selected{
     padding:15px 20px;
-    color:#222;
-}
-.students_list .webix_list_item.webix_selected,
-.progress_table div.webix_cell.webix_row_select{
-    background-color:#C7EBFF;
 }
 .new{
     vertical-align:super;
@@ -28,13 +23,13 @@
     color:#fff;
 }
 .good{
-    background-color:#37bc98;
+    background-color:#55CD97;
 }
 .okay{
-    background-color:#f6bb42;
+    background-color:#FDBF4C;
 }
 .bad{
-    background-color:#cf6a87;
+    background-color: #FF5C4C;
 }
 .right{
     text-align:right;
@@ -49,34 +44,26 @@
 .progress_table div.webix_cell, .progress_table .webix_hcell{
     padding-left:15px;
     padding-right:15px;
-    color:#222;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.progress_table .webix_hcell, .progress_table .webix_ss_vscroll_header{
-    background:#eee;
-}
-.progress_table .webix_ss_header td, .progress_table .webix_ss_vscroll_header {
-    border: 1px solid #ddd;
-}
+
 .assignment_complete, .arrow_up{
-    color:green;
+    color:#55CD97;
 }
 .assignment_incomplete, .arrow_down{
-    color:red;
+    color: #FF5C4C;
 }
 .arrows{
     font-size:11px;
     vertical-align:super;
 }
-.multiline{
-    line-height: 26px !important;
-}
-.teacher_tooltip{
-    background-color:#ffffffde;
-    color:#222223;
-    border-radius:3px;
-    width:200px;
-}
 .question .webix_icon {
     cursor:pointer;
-    margin: 25%;
+    margin-right: 25%;
+    margin-top: 50%;
+}
+
+.panel_drag_handle.webix_el_icon .webix_el_box .webix_icon_button{
+    cursor: grabbing;
 }

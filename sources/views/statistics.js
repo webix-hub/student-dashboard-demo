@@ -34,7 +34,7 @@ export default class StatisticsView extends JetView{
 			series:[
 				{
 					value:"#student#",
-					color:"#5ce1bf",
+					color:"#55CD97",
 					tooltip:{
 						template:"#student#"
 					}
@@ -90,7 +90,7 @@ export default class StatisticsView extends JetView{
 		chart.define("legend", {
 			values:[
 				{text:"Avg. performance", color:"#ac92ec"},
-				{text:name, color:"#5ce1bf"},
+				{text:name, color:"#55CD97"},
 				{text:"Avg. change", color:"#556ee6", markerType:"item"}
 			],
 			valign:"middle",

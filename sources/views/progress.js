@@ -30,13 +30,11 @@ export default class ProgressView extends JetView{
 					id:"",
 					fillspace:1, minWidth:170,
 					css:"curriculum",
-					header:{
-						text:"Curriculum<br>students", css:"multiline", height:55,
-					},
+					header:"Curriculum progress",
 					template: obj => (
-						"<svg viewBox='0 0 140 50'><rect y='20' rx='5' ry='5' width='140' height='11' style='fill:#ccc;' />"
-						+"<rect y='20' rx='5' ry='5' width='"+obj.compl*1.4+"' height='11' style='fill:#aaa;' />"
-						+"<rect y='20' rx='5' ry='5' width='"+obj.achiev*1.4+"' height='11' style='fill:#37bc98;' />"
+						"<svg viewBox='0 0 140 50'><rect y='20' rx='5' ry='5' width='140' height='11' style='fill:#CCD7E6;' />"
+						+"<rect y='20' rx='5' ry='5' width='"+obj.compl*1.4+"' height='11' style='fill: #94a1b3;' />"
+						+"<rect y='20' rx='5' ry='5' width='"+obj.achiev*1.4+"' height='11' style='fill:#55CD97;' />"
 						+"Sorry, your browser does not support inline SVG."
 						+"</svg>"
 					)
@@ -44,41 +42,29 @@ export default class ProgressView extends JetView{
 				{
 					id:"",
 					fillspace:1, minWidth:120,
-					header:{
-						text:"Achievement<br>(%)",
-						css:"multiline"
-					},
-					template: obj => `${obj.achiev} <span class='arrows arrow_up'>&#9652;${obj.achcng}</span>`
+					header:"Achievement (%)",
+					template: obj => `${obj.achiev} <span class='arrows arrow_up webix_icon mdi mdi-arrow-up'>${obj.achcng}</span>`
 				},
 				{
 					id:"",
 					fillspace:1, minWidth:120,
-					header:{
-						text:"Completed<br>(%)",
-						css:"multiline"
-					},
-					template: obj => `${obj.compl} <span class='arrows arrow_up'>&#9652;${obj.cmpch}</span>`
+					header: "Completed (%)",
+					template: obj => `${obj.compl} <span class='arrows arrow_up webix_icon mdi mdi-arrow-up'>${obj.cmpch}</span>`
 				},
 				{
 					id:"",
 					fillspace:1, minWidth:120,
-					header:{
-						text:"Problems solved<br>this week",
-						css:"multiline"
-					},
+					header: "Problems solved this week",
 					template: obj => {
 						return obj.prbwk + " "
-							+ ( obj.prch >= 0 ? "<span class='arrows arrow_up'>&#9652;" : "<span class='arrows arrow_down'>&#9662;" )
+							+ ( obj.prch >= 0 ? "<span class='arrows arrow_up webix_icon mdi mdi-arrow-up'>" : "<span class='arrows arrow_down webix_icon mdi mdi-arrow-down'>" )
 							+ obj.prch + "</span>"; 
 					}
 				},
 				{
 					id:"prtot",
 					fillspace:1, minWidth:120,
-					header:{
-						text:"Total problems<br>solved",
-						css:"multiline"
-					}
+					header:"Total problems solved"
 				},
 				{ id:"les", header:"Last worked on", fillspace:1, minWidth:120 },
 				{ id:"seen", header:"Last seen", fillspace:1, minWidth:120 },
@@ -86,9 +72,9 @@ export default class ProgressView extends JetView{
 					id:"", header:"Assignments",
 					fillspace:1, minWidth:120,
 					template: obj => {
-						return ( obj.ascmp ? "<span class='assignment_complete'>&#10004;</span>" + obj.ascmp : "" )
+						return ( obj.ascmp ? "<span class='assignment_complete webix_icon mdi mdi-check'></span>" + obj.ascmp : "" )
 							+ " "
-							+ (obj.asinc ? "<span class='assignment_incomplete'>&#10000;</span>" + obj.asinc : "");
+							+ (obj.asinc ? "<span class='assignment_incomplete webix_icon mdi mdi-pencil'></span>" + obj.asinc : "");
 					}
 				}
 			]
