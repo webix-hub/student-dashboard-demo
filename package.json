@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint sources/",
-    "build": "webpack --env.production true",
-    "module": "webpack --env.production true --env.module true",
-    "standalone": "webpack --env.production true --env.module true --env.standalone true",
-    "start": "webpack-dev-server --host 0.0.0.0"
+    "build": "webpack --mode=production",
+    "module": "webpack --mode=production --env module",
+    "standalone": "webpack --mode=production --env module --env standalone",
+    "start": "webpack-dev-server --mode=development --host 0.0.0.0"
   },
   "keywords": [
     "webix",

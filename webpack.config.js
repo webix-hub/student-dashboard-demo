@@ -1,14 +1,14 @@
 var path = require("path");
 var webpack = require("webpack");
 
-module.exports = function(env) {
+module.exports = function(env, settings) {
 
 	var pack = require("./package.json");
 	var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
-	var production = !!(env && env.production === "true");
-	var asmodule = !!(env && env.module === "true");
-	var standalone = !!(env && env.standalone === "true");
+	var production = settings.mode === "production";
+	var asmodule = !!(env && env.module);
+	var standalone = !!(env && env.standalone);
 
 	var babelSettings = {
 		extends: path.join(__dirname, '/.babelrc')
@@ -56,14 +56,6 @@ module.exports = function(env) {
 			})
 		]
 	};
-
-	if (production) {
-		config.plugins.push(
-			new  webpack.optimize.UglifyJsPlugin({
-				test: /\.js$/
-			})
-		);
-	}
 
 	if (asmodule){
 		if (!standalone){
