@@ -11,40 +11,48 @@ import label from "../helpers/label";
 export default class TopView extends JetView{
 	//building toolbars
 	toolbar(type){
-		return [
-			{ view:"label", label:label[type] },
-			{
-				view:"label", width:20,
-				template:"<span class='webix_icon mdi mdi-help-circle'></span>",
-				css:"question",
-				tooltip:tooltip[type]
-			},
-			{
-				view:"icon", icon:"mdi mdi-menu", css:"panel_drag_handle"
-			}
-		];
+		const dark = this.app.config.dark;
+		return {
+			view:"toolbar",
+			padding:{ left:12 },
+			css: dark ? "webix_dark" : "",
+			elements:[
+				{ view:"label", label:label[type] },
+				{
+					view:"label", width:20,
+					template:"<span class='webix_icon mdi mdi-help-circle'></span>",
+					css:"question",
+					tooltip:tooltip[type]
+				},
+				{
+					view:"icon", icon:"mdi mdi-menu", css:"panel_drag_handle",
+					tooltip:"Drag this panel"
+				}
+			]
+		};
 	}
 	config(){
-		const theme = this.app.getService("theme").getTheme();
-		const dark = theme === "contrast";
+		const dark = this.app.config.dark;
 		
 		const bar = {
 			view:"toolbar",
+			css: dark ? "webix_dark" : "",
 			padding:{ left: 12 },
 			elements:[
 				{ view:"label", label:"Webix Dashboard for Teachers" },
 				{},
 				{
 					view:"switch",
-					label:"Choose your side of the Force",
+					label:"Choose toolbar color",
 					offLabel:"Light",
 					onLabel:"Dark",
-					labelWidth:210,
-					width: 300,
+					labelWidth:150,
+					width: 250,
 					value: dark,
 					on:{
 						onChange: v => {
-							this.setTheme(v);
+							this.app.config.dark = v;
+							this.refresh();
 						}
 					}
 				}
@@ -65,18 +73,12 @@ export default class TopView extends JetView{
 			cells:[
 				{
 					view:"panel", x:0, y:0, dx:1, dy:2,
-					header:{
-						view:"toolbar", padding:{ left:12 }, 
-						elements:this.toolbar("gpa")
-					},
+					header:this.toolbar("gpa"),
 					body:StudentsView
 				},
 				{
 					view:"panel", x:1, y:0, dx:3, dy:1,
-					header:{
-						view:"toolbar", padding:{ left:12 }, 
-						elements:this.toolbar("subject")
-					},
+					header:this.toolbar("subject"),
 					body:{
 						cols:[
 							GradesRadarView,
@@ -86,18 +88,12 @@ export default class TopView extends JetView{
 				},
 				{
 					view:"panel", x:1, y:1, dx:3, dy:1,
-					header:{
-						view:"toolbar", padding:{ left:12 }, 
-						elements:this.toolbar("average")
-					},
+					header:this.toolbar("average"),
 					body:StatisticsView
 				},
 				{
 					view:"panel", x:0, y:2, dx:4, dy:1,
-					header:{
-						view:"toolbar", padding:{ left:12 }, 
-						elements:this.toolbar("activity")
-					},
+					header:this.toolbar("activity"),
 					body:ProgressView
 				}
 			]
@@ -109,11 +105,5 @@ export default class TopView extends JetView{
 				dash
 			]
 		};
-	}
-
-	setTheme(v){
-		const name = v ? "contrast" : "material"; 
-		const themes = this.app.getService("theme");
-		themes.setTheme(name);
 	}	
 }

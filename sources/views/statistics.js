@@ -76,13 +76,15 @@ export default class StatisticsView extends JetView{
 		const chart = this.$$("chart");
 		chart.parse(statistics);
 
-		this.on(this.app,"student:select", id => {
+		this.on(this.app.config.state.$changes, "selected", id => {
 			//mix in new student data
-			const data = getStats(id);
-			let i = 0;
-			chart.data.each( item => item.student = data.stats[i++] );
-			//repaint legend
-			this.newLegend(data.name);
+			if (id){
+				const data = getStats(id);
+				let i = 0;
+				chart.data.each( item => item.student = data.stats[i++] );
+				//repaint legend
+				this.newLegend(data.name);
+			}
 		});
 	}
 	newLegend(name){

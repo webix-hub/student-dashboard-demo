@@ -23,6 +23,6 @@ export default class GradesRadarView extends JetView {
 		};
 	}
 	init(view){
-		this.on(this.app,"student:select", id => view.parse(getGrades(id)));
+		this.on(this.app.config.state.$changes, "selected", id => id && view.parse(getGrades(id)));
 	}
 }

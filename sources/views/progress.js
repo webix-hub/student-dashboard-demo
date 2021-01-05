@@ -3,15 +3,12 @@ import {students} from "models/students";
 
 export default class ProgressView extends JetView{
 	config(){
-		const theme = this.app.getService("theme").getTheme();
-		const dark = theme === "contrast";
-
 		return {
 			view:"datatable",
 			select:true,
 			rowLineHeight:45,
 			rowHeight:50,
-			css:"progress_table" + (dark ? " table_dark" : ""),
+			css:"progress_table",
 			type:{
 				itemNew: data => {
 					return data.new ? "<span class='new'>New</span>" : "";
@@ -20,7 +17,7 @@ export default class ProgressView extends JetView{
 			on:{
 				onItemClick: id => {
 					//select the same student in list
-					this.app.callEvent("student:select",[id.row]);
+					this.app.config.state.selected = id.row;
 				}
 			},
 			columns:[
@@ -86,10 +83,12 @@ export default class ProgressView extends JetView{
 	init(view){
 		view.parse(students);
 
-		this.on(this.app,"student:select", id => {
+		this.on(this.app.config.state.$changes, "selected", id => {
 			//select the same student as in list
-			view.select(id);
-			view.showItem(id);
+			if (id){
+				view.select(id);
+				view.showItem(id);
+			}
 		});
 	}
 }

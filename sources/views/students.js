@@ -3,12 +3,9 @@ import {students} from "models/students";
 
 export default class StudentsView extends JetView {
 	config(){
-		const theme = this.app.getService("theme").getTheme();
-		const dark = theme === "contrast";
-
 		return {
 			view:"list",
-			css:"students_list" + (dark ? " list_dark" : ""),
+			css:"students_list",
 			select:true,
 			type:{
 				template:"#name# {common.itemNew()} {common.itemProgress()}",
@@ -22,7 +19,7 @@ export default class StudentsView extends JetView {
 				height:60
 			},
 			on:{
-				onAfterSelect: id => this.app.callEvent("student:select",[id])
+				onAfterSelect: id => this.app.config.state.selected = id
 				//select the same student in grid
 				//load new data for radar and bullets
 				//load data to chart
@@ -32,13 +29,15 @@ export default class StudentsView extends JetView {
 	init(view){
 		students.waitData.then(() => {
 			view.parse(students);
-			view.select(view.getFirstId());
+			view.select(this.app.config.state.selected || view.getFirstId());
 		});
 
-		this.on(this.app,"student:select", id => {
+		this.on(this.app.config.state.$changes, "selected", id => {
 			// select the same student as in grid
-			view.select(id);
-			view.showItem(id);
+			if (id){
+				view.select(id);
+				view.showItem(id);
+			}
 		});
 	}
 }

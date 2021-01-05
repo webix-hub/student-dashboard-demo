@@ -2423,6 +2423,11 @@ jest-worker@^26.6.1:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jet-restate@^latest:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jet-restate/-/jet-restate-1.1.0.tgz#f0972500c7505c1ee86f5db91c0b861fda4d480e"
+  integrity sha512-PNB0+X36KOtII2VHCXcxS2wbgVGOPGbJuQfRXzPwR2dWgYPAt+ZIeuEVPfYIzmCwLZqZLOlxTzjOfe3+xNhRvQ==
+
 js-tokens@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"

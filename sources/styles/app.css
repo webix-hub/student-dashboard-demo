@@ -64,11 +64,11 @@
     margin-top: 50%;
 }
 
-.panel_drag_handle.webix_el_icon .webix_el_box .webix_icon_button{
-    cursor: grabbing;
+.webix_dark .question .webix_icon {
+    color: #FFFFFF;
+    opacity: 0.7;
 }
 
-.table_dark.progress_table .webix_cell.webix_row_select,
-.list_dark.students_list .webix_list_item.webix_selected{
-    background: #24332b;
+.panel_drag_handle.webix_el_icon .webix_el_box .webix_icon_button{
+    cursor: grabbing;
 }
