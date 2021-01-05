@@ -54,7 +54,7 @@ export default class ProgressView extends JetView{
 				{
 					id:"",
 					fillspace:1, minWidth:120,
-					header: "Problems solved this week",
+					header: "Solved this week",
 					template: obj => {
 						return obj.prbwk + " "
 							+ ( obj.prch >= 0 ? "<span class='arrows arrow_up webix_icon mdi mdi-arrow-up'>" : "<span class='arrows arrow_down webix_icon mdi mdi-arrow-down'>" )
@@ -64,7 +64,7 @@ export default class ProgressView extends JetView{
 				{
 					id:"prtot",
 					fillspace:1, minWidth:120,
-					header:"Total problems solved"
+					header:"Solved total"
 				},
 				{ id:"les", header:"Last worked on", fillspace:1, minWidth:120 },
 				{ id:"seen", header:"Last seen", fillspace:1, minWidth:120 },

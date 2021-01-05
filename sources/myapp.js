@@ -7,12 +7,22 @@ export default class MyApp extends JetApp{
 		const state = createState({
 			selected: 0
 		});
+
+		let theme = "";
+		try{
+			theme = webix.storage.local.get("theme_students_dashboard");
+		}
+		catch(err){
+			webix.message("You blocked cookies. The theme won't be restored after page reloads.","debug");
+		}
+
 		const defaults = {
 			id 		: APPNAME,
 			version : VERSION,
 			router 	: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug 	: !PRODUCTION,
 			start 	: "/top",
+			theme	: theme || "",
 			state
 		};
 
