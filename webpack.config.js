@@ -64,12 +64,12 @@ module.exports = function(env, settings) {
 		}
 
 		const out = config.output;
-		const sub = standalone ? "full" : "module";
+		const sub = standalone ? "" : "module";
 
 		out.library = pack.name.replace(/[^a-z0-9]/gi, "");
 		out.libraryTarget= "umd";
-		out.path = path.join(__dirname, "dist", sub);
-		out.publicPath = "/dist/"+sub+"/";
+		out.path = path.join(__dirname, "codebase", sub);
+		out.publicPath = "/codebase/"+sub+"/";
 	}
 
 	return config;

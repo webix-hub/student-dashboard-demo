@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Student dashboard</title>
+	<!-- Webix Library PRO Edition -->
+	<script type="text/javascript" src="https://cdn.webix.com/pro/edge/webix.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.webix.com/pro/edge/webix.css">
+	
+	<!-- MD icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@5.8.55/css/materialdesignicons.min.css">
+
+	<!-- App -->
+	<script type="text/javascript" src="codebase/myapp.js"></script>
+	<link rel="stylesheet" type="text/css" href="codebase/myapp.css">
+
+	<!-- Error tracking -->
+	<script src="https://cdn.ravenjs.com/3.19.1/raven.min.js" crossorigin="anonymous"></script>
+
+	<!-- NAVBAR -->
+	<script type="text/javascript" src="/demos/common/nav.js"></script>
+	<link rel="stylesheet" type="text/css" href="/demos/common/nav.css">
+</head>
+<body>
+	<script>
+		if (!webix.env.touch && webix.env.scrollSize && webix.CustomScroll)
+			webix.CustomScroll.init();
+			
+		webix.protoUI({
+			name:"student-dashboard-demo",
+			app: webixteacherdashboard.default
+		}, webix.ui.jetapp);
+
+		webix.ready(function(){
+            // track js errors
+            window.Raven
+                .config(
+                    "https://59d0634de9704b61ba83823ec3bf4787@sentry.webix.io/12"
+                )
+                .install();
+        
+			webix.ui({
+				type:"clean", rows:[
+					{ view:"student-dashboard-demo" },
+					{ view:"navbar", value:"student-dashboard" }
+				]
+			});
+		});
+	</script>
+</body>
+</html>
