@@ -8,6 +8,7 @@ export default class ProgressView extends JetView{
 			select:true,
 			rowLineHeight:45,
 			rowHeight:50,
+			leftSplit: this.app.config.size === "small" ? 1 : 0,
 			css:"progress_table",
 			type:{
 				itemNew: data => {
