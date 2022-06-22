@@ -16,6 +16,7 @@ export default class StudentsPopup extends JetView {
 
 		return {
 			view:"sidemenu",
+			width: 300,
 			state: state => {
 				state.top = this.toolbarHeight;
 				state.height -= this.toolbarHeight;
