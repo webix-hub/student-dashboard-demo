@@ -21,7 +21,7 @@ export default class MyApp extends JetApp{
 			version : VERSION,
 			router 	: BUILD_AS_MODULE ? EmptyRouter : HashRouter,
 			debug 	: !PRODUCTION,
-			start 	: "/top",
+			start 	: "/top/charts",
 			theme	: theme || "",
 			state
 		};
@@ -34,8 +34,21 @@ if (!BUILD_AS_MODULE){
 	webix.ready(() => {
 		if (!webix.env.touch && webix.env.scrollSize)
 			webix.CustomScroll.init();
+		webix.ui.fullScreen();
 
 		const app = new MyApp();
+
+		const size =  () => document.body.offsetWidth > 800 ? "wide" : "small";
+		app.config.size = size();
+
+		webix.event(window, "resize", function(){
+			const newSize = size();
+			if (newSize != app.config.size){
+				app.config.size = newSize;
+				app.refresh();
+			}
+		});
+
 		app.render();
 	});
 }

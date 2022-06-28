@@ -19,10 +19,7 @@ export default class StudentsView extends JetView {
 				height:60
 			},
 			on:{
-				onAfterSelect: id => this.app.config.state.selected = id
-				//select the same student in grid
-				//load new data for radar and bullets
-				//load data to chart
+				onAfterSelect: id => this.SelectStudent(id)
 			}
 		};
 	}
@@ -39,5 +36,12 @@ export default class StudentsView extends JetView {
 				view.showItem(id);
 			}
 		});
+	}
+
+	SelectStudent(id){
+		this.app.config.state.selected = id;
+		//select the same student in grid
+		//load new data for radar and bullets
+		//load data to chart
 	}
 }

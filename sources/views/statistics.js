@@ -29,7 +29,7 @@ export default class StatisticsView extends JetView{
 				],
 				valign:"middle",
 				align:"right",
-				layout:"y"
+				layout:this.app.config.size === "small" ? "x" : "y"
 			},
 			series:[
 				{
@@ -97,7 +97,7 @@ export default class StatisticsView extends JetView{
 			],
 			valign:"middle",
 			align:"right",
-			layout:"y"
+			layout: this.app.config.size === "small" ? "x" : "y"
 		});
 		chart.refresh();
 	}

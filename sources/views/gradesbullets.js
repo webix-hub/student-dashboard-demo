@@ -31,7 +31,7 @@ export default class GradesBulletsView extends JetView {
 		return {
 			view:"scrollview",
 			scroll:"y",
-			gravity:2,
+			gravity:this.app.config.size === "small" ? 1 : 2,
 			body:{
 				view:"form",
 				localId:"bullets",
