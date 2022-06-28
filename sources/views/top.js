@@ -47,6 +47,7 @@ export default class TopView extends JetView{
 		}
 
 		const ui = {
+			minWidth: 200,
 			rows:[
 				bar,
 				{ $subview: true }
@@ -65,8 +66,6 @@ export default class TopView extends JetView{
 					}
 				}
 			});
-
-
 		}
 
 		return ui;

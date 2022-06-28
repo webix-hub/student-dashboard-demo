@@ -43,7 +43,7 @@ export default class ChartsView extends JetView {
 					body: StatisticsView
 				},
 			];
-		} else if (screen === "wide") {
+		} else {
 			subjectCharts = {
 				cols:[
 					GradesRadarView,

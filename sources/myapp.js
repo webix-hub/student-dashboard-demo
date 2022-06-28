@@ -27,6 +27,21 @@ export default class MyApp extends JetApp{
 		};
 
 		super({ ...defaults, ...config });
+
+		this.config.size = this.size();
+
+		const app = this;
+		webix.event(window, "resize", function(){
+			const newSize = app.size();
+			if (newSize != app.config.size){
+				app.config.size = newSize;
+				app.refresh();
+			}
+		});
+	}
+
+	size(){
+		return document.body.offsetWidth > 800 ? "wide" : "small";
 	}
 }
 
@@ -37,18 +52,6 @@ if (!BUILD_AS_MODULE){
 		webix.ui.fullScreen();
 
 		const app = new MyApp();
-
-		const size =  () => document.body.offsetWidth > 800 ? "wide" : "small";
-		app.config.size = size();
-
-		webix.event(window, "resize", function(){
-			const newSize = size();
-			if (newSize != app.config.size){
-				app.config.size = newSize;
-				app.refresh();
-			}
-		});
-
 		app.render();
 	});
 }
